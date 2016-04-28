@@ -37,8 +37,8 @@ public class RegexPanel extends JPanel
 		baseLayout = new SpringLayout();
 		
 		submitButton = new JButton("Say");
-		baseLayout.putConstraint(SpringLayout.WEST, submitButton, 42, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, submitButton, -35, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, submitButton, 27, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitButton, -25, SpringLayout.SOUTH, this);
 		quitButton = new JButton("Quit");
 		baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 0, SpringLayout.NORTH, submitButton);
 		
@@ -67,7 +67,7 @@ public class RegexPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, promptLabelPhone, 0, SpringLayout.WEST, promptLabelFirstName);
 		promptLabelEmail = new JLabel("Email");	
 		baseLayout.putConstraint(SpringLayout.NORTH, promptLabelEmail, 6, SpringLayout.NORTH, typingFieldEmail);
-		baseLayout.putConstraint(SpringLayout.WEST, promptLabelEmail, 0, SpringLayout.WEST, promptLabelFirstName);
+		baseLayout.putConstraint(SpringLayout.WEST, promptLabelEmail, 0, SpringLayout.WEST, promptLabelLastName);
 		
 		setupPanel();
 		setupLayout();
