@@ -21,7 +21,7 @@ public class RegexFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);  //installs the panel in the frame
-		this.setSize(800,800);
+		this.setSize(500,500);
 		this.setTitle("Art app!"); // find a good size for app
 		this.setResizable(false); //can't change size of window
 		this.setVisible(true);  //must be last line of setupFrame

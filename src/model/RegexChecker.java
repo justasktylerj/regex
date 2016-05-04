@@ -121,17 +121,17 @@ public class RegexChecker
 			{
 				if (firstName.contains(firstNameList.get(currentSymbol)))
 				{
-					return firstStatus = "Status code 400: contains invalid character";
+					return firstStatus = "First Name: Status code 400: contains invalid character";
 				}
 				else
 				{
-					firstStatus = "All good";
+					firstStatus = "First Name: All good";
 				}
 			}
 		}
 		else
 		{
-			firstStatus = "too long or too short";
+			firstStatus = "First Name: too long or too short";
 		}
 		return firstStatus;
 	}
@@ -146,17 +146,17 @@ public class RegexChecker
 			{
 				if (lastName.contains(lastNameList.get(currentSymbol)))
 				{
-					return lastStatus = "Status code 400: contains invalid character";
+					return lastStatus = "Last Name: Status code 400: contains invalid character";
 				}
 				else
 				{
-					lastStatus = "All good";
+					lastStatus = "Last Name: All good";
 				}
 			}
 		}
 		else
 		{
-			lastStatus = "too long or too short";
+			lastStatus = "Last Name: too long or too short";
 		}
 		return lastStatus;
 	}
@@ -170,11 +170,11 @@ public class RegexChecker
 		
 		if (emailMatcher.matches() == true)
 		{
-			emailStatus = "all good";
+			emailStatus = "Email: all good";
 		}
 		else
 		{
-			emailStatus = "invalid email";
+			emailStatus = "Email: invalid email";
 		}
 		return emailStatus;
 		
@@ -190,16 +190,16 @@ public class RegexChecker
 		{
 			if (phoneMatcher.matches() == true)
 			{
-				phoneStatus = "all good";
+				phoneStatus = "Phone: all good";
 			}
 			else
 			{
-				phoneStatus = "invalid";
+				phoneStatus = "Phone: invalid";
 			}
 		}
 		else
 		{
-			phoneStatus = "I DEMAMND 10 DIGITS!";
+			phoneStatus = "Phone: I DEMAMND 10 DIGITS!";
 		}
 		return phoneStatus;
 	}
