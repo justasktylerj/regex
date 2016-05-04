@@ -17,7 +17,7 @@ public class RegexChecker
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String PHONE_PATTERN = " ^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
 	
-	public RegexChecker(String userName)
+	public RegexChecker()
 	{
 		this.firstNameList = new ArrayList<String>();
 		this.lastNameList = new ArrayList<String>();
