@@ -2,17 +2,15 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
 import controller.RegexController;
-
 
 public class RegexPanel extends JPanel
 {
 	private RegexController baseController;
 	
 	private SpringLayout baseLayout;
+	
 	private JTextField typingFieldFirstName;
 	private JLabel promptLabelFirstName;
 	
@@ -30,7 +28,7 @@ public class RegexPanel extends JPanel
 	
 	
 	
-	//declare components
+
 	public RegexPanel(RegexController baseController)
 	{
 	
@@ -61,7 +59,7 @@ public class RegexPanel extends JPanel
 		setupPanel();
 		setupLayout();
 		setupListeners();
-	//after the declarations are finished the setup starts
+	
 	}	
 		
 	private void setupPanel()
@@ -115,10 +113,23 @@ public class RegexPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String userTextFirstName = typingFieldFirstName.getText();
-				String userTextLastName = typingFieldLastName.getText();
-				String userTextPhone = typingFieldPhone.getText();
-				String userTextEmail = typingFieldEmail.getText();
+				String firstName = typingFieldFirstName.getText();
+				String firstStatus = baseController.processFirstName(firstName);
+				promptLabelFirstName.setText(firstStatus);
+				
+				
+				String lastName = typingFieldLastName.getText();
+				String lastStatus = baseController.processLastName(lastName);
+				promptLabelLastName.setText(lastStatus);
+				
+				String phone = typingFieldPhone.getText();
+				String phoneStatus = baseController.processPhone(phone);
+				promptLabelPhone.setText(phone);
+				
+				String email = typingFieldEmail.getText();
+				String emailStatus = baseController.processEmail(email);
+				promptLabelEmail.setText(phone);
+				
 			}
 		});
 		
@@ -137,8 +148,4 @@ public class RegexPanel extends JPanel
 		System.exit(0);
 	}
 	
-	public JTextField getTextField()
-	{
-		return typingFieldFirstName;
-	}
 }
