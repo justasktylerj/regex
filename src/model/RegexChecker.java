@@ -9,8 +9,6 @@ public class RegexChecker
 {
 	private ArrayList<String> firstNameList;
 	private ArrayList<String> lastNameList;
-	private ArrayList<String> phoneList;
-	private ArrayList<String> emailList;
 	private Matcher emailMatcher;
 	private Pattern emailPattern;
 	private Matcher phoneMatcher;
@@ -23,8 +21,8 @@ public class RegexChecker
 	{
 		this.firstNameList = new ArrayList<String>();
 		this.lastNameList = new ArrayList<String>();
-		this.phoneList = new ArrayList<String>();
-		this.emailList = new ArrayList<String>();
+		
+		emailPattern = Pattern.compile(EMAIL_PATTERN);
 		
 		buildFirstNameList();
 		buildLastNameList();
@@ -163,16 +161,47 @@ public class RegexChecker
 		return lastCheck;
 	}
 	
-	public String EmailChecker() 
-	{
-		emailPattern = Pattern.compile(EMAIL_PATTERN);
-	}
-
 	
-	public boolean validate(final String hex) 
+	public String emailChecker(String email) 
 	{
-		emailMatcher = emailPattern.matcher(hex);
-		return emailMatcher.matches();
+		String emailCheck = "";
+		
+		emailMatcher = emailPattern.matcher(email);
+		
+		if (emailMatcher.matches() == true)
+		{
+			emailCheck = "all good";
+		}
+		else
+		{
+			emailCheck = "invalid email";
+		}
+		return emailCheck;
+		
+	}
+	
+	public String phoneChecker(String phone)
+	{
+		String phoneCheck = "";
+		
+		phoneMatcher = phonePattern.matcher(phone);
+		
+		if (phone.length() == 10)
+		{
+			if (phoneMatcher.matches() == true)
+			{
+				phoneCheck = "all good";
+			}
+			else
+			{
+				phoneCheck = "invalid";
+			}
+		}
+		else
+		{
+			phoneCheck = "I DEMAMND 10 DIGITS!";
+		}
+		return phoneCheck;
 	}
 	
 }
