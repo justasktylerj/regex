@@ -8,10 +8,15 @@ public class RegexController
 {
 	private RegexChecker myBot;
 	private RegexFrame baseFrame;
+	private String firstName;
+	private String lastName;
+	private String phoneNum;
+	private String email;
 	
 	
 	public RegexController()
 	{
+		myBot = new RegexChecker();
 		baseFrame = new RegexFrame(this);
 	}
 	
@@ -20,13 +25,32 @@ public class RegexController
 		
 	} 
 	
-	public RegexChecker getRegexChecker()
+	public String processFirstName(String firstName)
 	{
-		return myBot;
+		String firstStatus = "null";
+		firstStatus = myBot.firstNameChecker(firstName);
+		return firstStatus;
 	}
 	
-	public RegexFrame getBaseFrame()
+	public String processLastName(String lastName)
 	{
-		return baseFrame;
+		String lastStatus = "null";
+		lastStatus = myBot.lastNameChecker(lastName);
+		return lastStatus;
 	}
+	
+	public String processPhone(String phone)
+	{
+		String phoneStatus = "null";
+		phoneStatus = myBot.phoneChecker(phoneNum);
+		return phoneStatus;
+	}
+	
+	public String processEmail(String email)
+	{
+		String emailStatus = "null";
+		emailStatus = myBot.emailChecker(email);
+		return emailStatus;
+	}
+	
 }

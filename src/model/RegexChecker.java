@@ -1,6 +1,9 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 public class RegexChecker 
 {
@@ -8,17 +11,14 @@ public class RegexChecker
 	private ArrayList<String> lastNameList;
 	private ArrayList<String> phoneList;
 	private ArrayList<String> emailList;
-
-	private String userName;
+	private Matcher emailMatcher;
+	private Pattern emailPattern;
+	private Matcher phoneMatcher;
+	private Pattern phonePattern;
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String PHONE_PATTERN = " ^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
 	
-	private String content;
-	
-	/**
-	 * 
-	 * Creates an instance of the Chatbot with the supplied username.
-	 * 
-	 * @param userName The username for the chatbot.
-	 */
 	public RegexChecker(String userName)
 	{
 		this.firstNameList = new ArrayList<String>();
@@ -26,13 +26,8 @@ public class RegexChecker
 		this.phoneList = new ArrayList<String>();
 		this.emailList = new ArrayList<String>();
 		
-		this.userName = userName;
-		this.content = "memes";
-		
 		buildFirstNameList();
 		buildLastNameList();
-		buildPhoneList();
-		buildEmailList();
 
 	}
 	//key words for lists
@@ -117,228 +112,67 @@ public class RegexChecker
 		this.lastNameList.add("0");
 		this.lastNameList.add(" ");
 	}
-	//""
-	private void buildPhoneList()
-	{
-		this.phoneList.add("~");
-		this.phoneList.add("`");
-		this.phoneList.add("!");
-		this.phoneList.add("@");
-		this.phoneList.add("#");
-		this.phoneList.add("$");
-		this.phoneList.add("%");
-		this.phoneList.add("^");
-		this.phoneList.add("&");
-		this.phoneList.add("*");
-		this.phoneList.add("(");
-		this.phoneList.add(")");
-		this.phoneList.add("_");
-		this.phoneList.add("-");
-		this.phoneList.add("+");
-		this.phoneList.add("=");
-		this.phoneList.add("{");
-		this.phoneList.add("}");
-		this.phoneList.add("[");
-		this.phoneList.add("]");
-		this.phoneList.add("|");
-		this.phoneList.add(":");
-		this.phoneList.add(";");
-		this.phoneList.add(">");
-		this.phoneList.add("<");
-		this.phoneList.add(".");
-		this.phoneList.add(",");
-		this.phoneList.add("q");
-		this.phoneList.add("w");
-		this.phoneList.add("e");
-		this.phoneList.add("r");
-		this.phoneList.add("t");
-		this.phoneList.add("y");
-		this.phoneList.add("u");
-		this.phoneList.add("i");
-		this.phoneList.add("o");
-		this.phoneList.add("p");
-		this.phoneList.add("a");
-		this.phoneList.add("s");
-		this.phoneList.add("d");
-		this.phoneList.add("f");
-		this.phoneList.add("g");
-		this.phoneList.add("h");
-		this.phoneList.add("j");
-		this.phoneList.add("k");
-		this.phoneList.add("l");
-		this.phoneList.add("z");
-		this.phoneList.add("x");
-		this.phoneList.add("c");
-		this.phoneList.add("v");
-		this.phoneList.add("b");
-		this.phoneList.add("n");
-		this.phoneList.add("m");
-		this.phoneList.add("Q");
-		this.phoneList.add("W");
-		this.phoneList.add("E");
-		this.phoneList.add("R");
-		this.phoneList.add("T");
-		this.phoneList.add("Y");
-		this.phoneList.add("I");
-		this.phoneList.add("O");
-		this.phoneList.add("P");
-		this.phoneList.add("S");
-		this.phoneList.add("D");
-		this.phoneList.add("F");
-		this.phoneList.add("G");
-		this.phoneList.add("H");
-		this.phoneList.add("J");
-		this.phoneList.add("K");
-		this.phoneList.add("L");
-		this.phoneList.add("Z");
-		this.phoneList.add("X");
-		this.phoneList.add("C");
-		this.phoneList.add("V");
-		this.phoneList.add("B");
-		this.phoneList.add("N");
-		this.phoneList.add("M");
-		this.phoneList.add(" ");
-	}
 	
-	private void buildEmailList()
+	public String firstNameChecker(String firstName)
 	{
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-		this.emailList.add("");
-	}
-	
-	
-	public boolean lengthChecker(String currentInput)
-	{
-		boolean hasLength = false;
+		String firstCheck = null;
 		
-		if(currentInput != null && currentInput.length() > 0)
+		if (firstName.length() > 2 && firstName.length() < 30)
 		{
-			hasLength = true;
+			for (int currentSymbol = 0; currentSymbol < firstNameList.size(); currentSymbol++)
+			{
+				if (firstName.contains(firstNameList.get(currentSymbol)))
+				{
+					return firstCheck = "Status code 400: contains invalid character";
+				}
+				else
+				{
+					firstCheck = "All good";
+				}
+			}
 		}
-		
-		return hasLength;
-	}
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 * Checks if the supplied String matches the content area for this Chatbot instance.
-	 * @param currentInput The supplied String to be checked.
-	 * @return Whether it matches the content area.
-	 */
-	public boolean contentChecker(String currentInput)
-	{
-		boolean hasContent = false;
-		
-		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		else
 		{
-			hasContent = true;
+			firstCheck = "too long or too short";
 		}
-		
-		return hasContent;
+		return firstCheck;
 	}
-	//checks for keyboard mashing
 	
-	public boolean lastNameChecker(String currentInput)
+	public String lastNameChecker(String lastName)
 	{
-        boolean hasLastName = false;
+		String lastCheck = null;
 		
-		for(String lastName : lastNameList)
+		if (lastName.length() > 2 && lastName.length() < 40)
 		{
-			if(currentInput.toLowerCase().contains(lastName.toLowerCase()))
+			for (int currentSymbol = 0; currentSymbol < lastNameList.size(); currentSymbol++)
 			{
-				hasLastName = true;
+				if (lastName.contains(lastNameList.get(currentSymbol)))
+				{
+					return lastCheck = "Status code 400: contains invalid character";
+				}
+				else
+				{
+					lastCheck = "All good";
+				}
 			}
-		}		
-		
-		return hasLastName;
-	}
-	
-	public boolean phoneChecker(String currentInput)
-	{
-        boolean hasPhone = false;
-		
-		for(String phone : phoneList)
+		}
+		else
 		{
-			if(currentInput.toLowerCase().contains(phone.toLowerCase()))
-			{
-				hasPhone = true;
-			}
-		}		
-		
-		return hasPhone;
+			lastCheck = "too long or too short";
+		}
+		return lastCheck;
 	}
 	
-	public boolean emailChecker(String currentInput)
+	public String EmailChecker() 
 	{
-        boolean hasEmail = false;
-		
-		for(String email : emailList)
-		{
-			if(currentInput.toLowerCase().contains(email.toLowerCase()))
-			{
-				hasEmail = true;
-			}
-		}		
-		
-		return hasEmail;
+		emailPattern = Pattern.compile(EMAIL_PATTERN);
 	}
+
 	
-	
-	public boolean firstNameChecker(String currentInput)
+	public boolean validate(final String hex) 
 	{
-		boolean hasFirstName = false;
-		
-		for(String firstName : firstNameList)
-		{
-			if(currentInput.toLowerCase().contains(firstName.toLowerCase()))
-			{
-				hasFirstName = true;
-			}
-		}		
-		
-		return hasFirstName;
+		emailMatcher = emailPattern.matcher(hex);
+		return emailMatcher.matches();
 	}
 	
-	
-	public String getUserName()
-	{
-		return userName;
-	}
-	
-	 
-	public String getContent()
-	{
-		return content;
-	}
-	
-	
-	public ArrayList<String> getFirstNameList()
-	{
-		return firstNameList;
-	}
-	
-	public ArrayList<String> getSecretList()
-	{
-		return emailList;
-	}
-	
-	public ArrayList<String> getLastNameList()
-	{
-		return lastNameList;
-	}
-	
-	public void setContent(String content)
-	{
-		this.content = content;
-	}
 }
