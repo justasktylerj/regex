@@ -113,7 +113,7 @@ public class RegexChecker
 	
 	public String firstNameChecker(String firstName)
 	{
-		String firstCheck = null;
+		String firstStatus = null;
 		
 		if (firstName.length() > 2 && firstName.length() < 30)
 		{
@@ -121,24 +121,24 @@ public class RegexChecker
 			{
 				if (firstName.contains(firstNameList.get(currentSymbol)))
 				{
-					return firstCheck = "Status code 400: contains invalid character";
+					return firstStatus = "Status code 400: contains invalid character";
 				}
 				else
 				{
-					firstCheck = "All good";
+					firstStatus = "All good";
 				}
 			}
 		}
 		else
 		{
-			firstCheck = "too long or too short";
+			firstStatus = "too long or too short";
 		}
-		return firstCheck;
+		return firstStatus;
 	}
 	
 	public String lastNameChecker(String lastName)
 	{
-		String lastCheck = null;
+		String lastStatus = null;
 		
 		if (lastName.length() > 2 && lastName.length() < 40)
 		{
@@ -146,43 +146,43 @@ public class RegexChecker
 			{
 				if (lastName.contains(lastNameList.get(currentSymbol)))
 				{
-					return lastCheck = "Status code 400: contains invalid character";
+					return lastStatus = "Status code 400: contains invalid character";
 				}
 				else
 				{
-					lastCheck = "All good";
+					lastStatus = "All good";
 				}
 			}
 		}
 		else
 		{
-			lastCheck = "too long or too short";
+			lastStatus = "too long or too short";
 		}
-		return lastCheck;
+		return lastStatus;
 	}
 	
 	
 	public String emailChecker(String email) 
 	{
-		String emailCheck = "";
+		String emailStatus = "";
 		
 		emailMatcher = emailPattern.matcher(email);
 		
 		if (emailMatcher.matches() == true)
 		{
-			emailCheck = "all good";
+			emailStatus = "all good";
 		}
 		else
 		{
-			emailCheck = "invalid email";
+			emailStatus = "invalid email";
 		}
-		return emailCheck;
+		return emailStatus;
 		
 	}
 	
 	public String phoneChecker(String phone)
 	{
-		String phoneCheck = "";
+		String phoneStatus = "";
 		
 		phoneMatcher = phonePattern.matcher(phone);
 		
@@ -190,18 +190,18 @@ public class RegexChecker
 		{
 			if (phoneMatcher.matches() == true)
 			{
-				phoneCheck = "all good";
+				phoneStatus = "all good";
 			}
 			else
 			{
-				phoneCheck = "invalid";
+				phoneStatus = "invalid";
 			}
 		}
 		else
 		{
-			phoneCheck = "I DEMAMND 10 DIGITS!";
+			phoneStatus = "I DEMAMND 10 DIGITS!";
 		}
-		return phoneCheck;
+		return phoneStatus;
 	}
 	
 }

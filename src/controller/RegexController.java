@@ -10,7 +10,7 @@ public class RegexController
 	private RegexFrame baseFrame;
 	private String firstName;
 	private String lastName;
-	private String phoneNum;
+	private String phone;
 	private String email;
 	
 	
@@ -42,7 +42,7 @@ public class RegexController
 	public String processPhone(String phone)
 	{
 		String phoneStatus = "null";
-		phoneStatus = myBot.phoneChecker(phoneNum);
+		phoneStatus = myBot.phoneChecker(phone);
 		return phoneStatus;
 	}
 	
