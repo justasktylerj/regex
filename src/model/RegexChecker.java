@@ -15,7 +15,7 @@ public class RegexChecker
 	private Pattern phonePattern;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private static final String PHONE_PATTERN = " ^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
+	private static final String PHONE_PATTERN = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
 	
 	public RegexChecker()
 	{
@@ -23,6 +23,7 @@ public class RegexChecker
 		this.lastNameList = new ArrayList<String>();
 		
 		emailPattern = Pattern.compile(EMAIL_PATTERN);
+		phonePattern = Pattern.compile(PHONE_PATTERN);
 		
 		buildFirstNameList();
 		buildLastNameList();

@@ -130,11 +130,11 @@ public class RegexPanel extends JPanel
 				
 				String phone = typingFieldPhone.getText();
 				String phoneStatus = baseController.processPhone(phone);
-				promptLabelPhone.setText(phone);
+				promptLabelPhone.setText(phoneStatus);
 				
 				String email = typingFieldEmail.getText();
 				String emailStatus = baseController.processEmail(email);
-				promptLabelEmail.setText(phone);
+				promptLabelEmail.setText(emailStatus);
 				
 			}
 		});
